@@ -1,24 +1,48 @@
 {% extends 'home/home.html' %}
-    
-{% block content %}
-<ul>
-    {% for pessoa in pessoas %}
-    <li>
-        {{ pessoa.id }} - {{pessoa.nome}} 
-        <a href="{% url 'editar' pessoa.id %}">Editar</a>
-        <a href="{% url 'remover' pessoa.id %}">Remover</a>
-        {% if request.user.is.authenticated %}
-            <a href="{% url 'logout' %}">Sair</a>
-        {% endif %}
-    </li>
-    {% endfor %}
-</ul>
 
-<form action="{% url 'salvar' %}" method="POST">
-    {% csrf_token %}
-    <input type="text" name="nome" required>
-    <button type="submit">Salvar</button>
-</form>
+{% block button-header %}
+    <a href="/orders"><button class="button-cadastro"><strong>Editar Pedidos</strong></button></a>
 {% endblock %}
 
-asdasda
+{% block content %}
+
+
+<div class="container">
+    <div class="board">
+        <header class="header-board">⏰</header>
+        <strong>Aguardando</strong>
+        <span>(3)</span>
+        <span>{{CountPedidos}}</span>
+        <br>
+        <a name="orders"></a>
+        <div class="row  justify-content-center" id="pedidos">
+            {% for pessoa in pessoas %}
+            <div class="board-pedidos">
+                <div class="card">
+                    <img class="img-pedido" src="../img/products/{{this.imagem}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Mesa {{this.mesa}}</h5>
+                        <p class="card-text">Pedido {{this.pedido}}</p>
+                        <button class="button-enviar"><strong>Enviar para Produção</strong></button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="board">
+        <header class="header-board">👨🏻‍🍳</header>
+        <strong>Em Produção</strong>
+        <span>(2)</span>
+    </div>
+
+    <div class="board">
+        <header class="header-board">✅</header>
+        <strong>Concluído</strong>
+        <span>(3)</span>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,36 +1,44 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Pessoa
+from .models import Pedido
 # Create your views here.
 
-
-def home(request):
-    return render(request, "home/home.html")
+@login_required
+def index(request):
+    return render(request, "index.html")
 
 @login_required
-def list(request):
-    pessoas = Pessoa.objects.all()
-    return render(request, "index.html", {"pessoas": pessoas})
+def orders(request):
+    return render(request, "orders/all.html")
+
+@login_required
+def create(request):
+    return render(request, "orders/create.html")
+
+@login_required
+def details(request):
+    pedidos = Pedido.objects.all()
+    return render(request, "index.html", {"pedidos": pedidos})
 
 def salvar(request):
     salvanome = request.POST.get("nome")
-    Pessoa.objects.create(nome=salvanome)
-    pessoas = Pessoa.objects.all()
-    return render(request, "index.html", {"pessoas": pessoas})
+    Pedido.objects.create(nome=salvanome)
+    pedidos = Pedido.objects.all()
+    return render(request, "all.html", {"pedidos": pedidos})
 
 def editar(request, id):
-    pessoa = Pessoa.objects.get(id=id)
-    return render(request, "update.html", {"pessoa": pessoa})
+    pedido = Pedido.objects.get(id=id)
+    return render(request, "update.html", {"pedido": pedido})
 
 def update(request, id):
     salvanome = request.POST.get("nome")
-    pessoa = Pessoa.objects.get(id=id)
-    pessoa.nome = salvanome
-    pessoa.save()
-    return redirect(list)
+    pedido = Pedido.objects.get(id=id)
+    pedido.nome = salvanome
+    pedido.save()
+    return redirect(details)
 
 def remover(request, id):
-    pessoa = Pessoa.objects.get(id=id)
-    pessoa.delete()
-    return redirect(home)
+    pedido = Pedido.objects.get(id=id)
+    pedido.delete()
+    return redirect(index)
 
