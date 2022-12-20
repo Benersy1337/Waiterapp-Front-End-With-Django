@@ -1,7 +1,7 @@
 {% extends 'home/home.html' %}
 
 {% block button-header %}
-    <a href="/"><button class="button-cadastro"><strong>Voltar</strong></button></a>
+    <a href="/orders"><button class="button-cadastro"><strong>Voltar</strong></button></a>
 {% endblock %}
 
 {% block content %}
@@ -12,16 +12,16 @@
         <br />
         <a name="orders"></a>
         <div class="row justify-content-center">
-            {% for pessoa in pessoas %}
+            {% for pedido in pedidos %}
             <div class="board-pedidos">
                 <div class="item-page">
                     <img class="img-pedido" src="../img/products/{{this.imagem}}" class="card-img-top" alt="..." />
                     <div class="card-body">
-                        <h5 class="card-title">Mesa {{pessoa.id}}</h5>
-                        <p class="card-text">Pedido {{pessoa.nome}}</p>
+                        <h5 class="card-title">Mesa {{pedido.id}}</h5>
+                        <p class="card-text">Pedido {{pedido.nome}}</p>
                         <div class="actions">
-                            <a href="/orders/{{pessoa.id}}" class="button-modal">Detalhes</a>
-                            <a href="/orders/edit/{{pessoa.id}}" class="button-modal">Editar</a>
+                            <a href="/orders/{{pedido.id}}" class="button-modal">Detalhes</a>
+                            <a href="/orders/edit/{{pedido.id}}" class="button-modal">Editar</a>
                         </div>
                     </div>
                 </div>

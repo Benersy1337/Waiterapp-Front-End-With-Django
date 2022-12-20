@@ -24,7 +24,7 @@ def salvar(request):
     salvanome = request.POST.get("nome")
     Pedido.objects.create(nome=salvanome)
     pedidos = Pedido.objects.all()
-    return render(request, "all.html", {"pedidos": pedidos})
+    return render(request, "orders/all.html", {"pedidos": pedidos})
 
 def editar(request, id):
     pedido = Pedido.objects.get(id=id)

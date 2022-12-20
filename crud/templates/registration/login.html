@@ -1,20 +1,30 @@
 {% extends 'home/home.html' %}
-    
+
+
+
+
 {% block content %}
 
-    <h3>Autenticação</h3>
+{% load static %}
+<link rel="stylesheet" href="{% static '/assets/css/login.css' %}">
 
-    <form action="" method="POST">
 
-        {% csrf_token %}
+<h3>Autenticação</h3>
 
-        Usuário<input type="text "name="username">
+<form action="" method="POST">
 
-        Senha<input type="password" name="password">
+    {% csrf_token %}
 
-        <button type="submit">Login</button>
+    Usuário<input type="text " name="username">
 
-        
-    </form>
+    Senha<input type="password" name="password">
+
+    <button type="submit">Login</button>
+
+
+</form> 
+
+
+
 
 {% endblock %}

@@ -11,7 +11,7 @@ body {
 }
 
 button {
-  orderr: pointer;
+  order: pointer;
   font-size: 1rem;
   color: #333;
 
@@ -187,7 +187,7 @@ h2 {
 }
 
 .logado .logout{
-  color: white;
+  color: black;
 }
 
 .logado .welcome{
