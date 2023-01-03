@@ -1,51 +1,58 @@
 {% extends 'home/home.html' %}
 
+{% block button-header %}
+    <a href="/all"><button class="button-cadastro"><strong>Voltar</strong></button></a>
+{% endblock %}
+
 {% block content %}
 
 
-<h1>Editar Order</h1>
-<form action="/orders/edit" method="POST" enctype="multipart/form-data">
+<h1>Editar Pedido</h1>
+<form action="{% url 'update' pedido.id %}" method="POST">
+
+    {% csrf_token %}
+
     <div class="card-parciais item-page">
 
-        <img src="/img/products/{{order.imagem}}" class="img-detail" alt="{{order.mesa}}" />
+        <img src="/img/products/{{pedido.imagem}}" class="img-detail" alt="{{pedido.mesa}}" />
 
         <div class="card-body">
 
             <div class="form-group">
 
-                <input type="hidden" name="id" value={{order._id}} />
+                <input type="hidden" name="id" value={{pedido.id}} />
 
                 <label for="mesa">Mesa da Mesa:</label>
-                <input type="number" name="mesa" placeholder="Digite o número da Mesa" value="{{order.mesa}}" />
+                <input type="number" name="mesa" placeholder="Digite o número da Mesa" value="{{pedido.nome}}" />
 
             </div>
 
             <div class="form-group">
                 <label for="pedido">Pedido:</label>
-                <input type="number" name="pedido" placeholder="Digite o número do Pedido" value="{{order.pedido}}" />
+                <input type="number" name="pedido" placeholder="Digite o número do Pedido" value="{{pedido.pedido}}" />
             </div>
 
-            <div class="form-group">
-                <label for="descricao">Descrição:</label>
-                <input name="descricao" value="{{order.descricao}}" placeholder="Digite o mesa do Pedido"></input>
-            </div>
 
             <div class="form-group">
                 <label for="imagem">Imagem:</label>
                 <input type="file" name="imagem" />
             </div>
 
-
-
-
             <div class="buttons-detail">
 
-                <a href="/orders" class="btn btn-primary voltar">Voltar</a>
+                <form action="/remover/{{pedido.id}}" method="POST">
+                    <input type="submit" class="button btn btn-primary excluir" value="Excluir">
+                </form>
 
                 <input type="submit" class="btn btn-primary button" value="Salvar" />
 
             </div>
 
-
         </div>
+
+       
 </form>
+
+
+
+{% endblock %}

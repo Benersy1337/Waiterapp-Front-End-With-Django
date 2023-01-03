@@ -1,15 +1,23 @@
 {% extends 'home/home.html' %}
 
+{% block button-header %}
+    <a href="/all"><button class="button-cadastro"><strong>Voltar</strong></button></a>
+{% endblock %}
+
 {% block content %}
 
 
 
+
+
 <h1>Criar Order</h1>
-<form action="{% url 'salvar' %}" method="POST">
+
+<form action="{% url 'create' %}" method="POST">
 
     {% csrf_token %}
 
     <input type="text" name="nome" required>
+    
     <button type="submit">Criar</button>
 
     <!-- <div class="card-parciais item-page">

@@ -1,19 +1,17 @@
-% extends 'home/home.html' %}
+{% extends 'home/home.html' %}
+
+{% block button-header %}
+    <a href="/all"><button class="button-cadastro"><strong>Voltar</strong></button></a>
+{% endblock %}
 
 {% block content %}
 
 <div class="card-parciais item-page">
-    <img src="/img/products/{{order.imagem}}" class="img-detail" alt="{{order.mesa}}">
+    <img src="/img/products/{{pedido.imagem}}" class="img-detail" alt="{{pedido.id}}">
     <div class="card-body">
-        <h5 class="card-title">Mesa {{order.mesa}}</h5>
-        <p>Pedido: {{order.pedido}}</p>
-        <p>Descrição: {{order.descricao}}</p>
-        <div class="buttons-detail">
-            <a href="/orders" class="btn btn-primary voltar">Voltar</a>
-            <form action="/orders/remove/{{order._id}}" method="POST">
-                <input type="submit" class="button btn btn-primary excluir" value="Excluir">
-            </form>
-        </div>
-
+        <h5 class="card-title">Mesa {{pedido.id}}</h5>
+        <p class="card-text">Pedido {{pedido.nome}}</p>
     </div>
 </div>
+
+{% endblock %}

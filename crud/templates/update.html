@@ -8,11 +8,11 @@
 </head>
 <body>
 
-    {{pessoa.id}} - {{pessoa.nome}}
+    {{pedido.id}} - {{pedido.nome}}
     
-    <form action="{% url 'update' pessoa.id %}" method="POST">
+    <form action="{% url 'update' pedido.id %}" method="POST">
         {% csrf_token %}
-        <input type="text" name="nome" value="{{pessoa.nome}}">
+        <input type="text" name="nome" value="{{pedido.nome}}">
         <button type="submit">Update</button>
     </form>
     

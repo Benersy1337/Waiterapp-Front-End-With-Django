@@ -9,36 +9,35 @@ def index(request):
 
 @login_required
 def orders(request):
-    return render(request, "orders/all.html")
-
-@login_required
-def create(request):
-    return render(request, "orders/create.html")
-
-@login_required
-def details(request):
-    pedidos = Pedido.objects.all()
-    return render(request, "index.html", {"pedidos": pedidos})
-
-def salvar(request):
-    salvanome = request.POST.get("nome")
-    Pedido.objects.create(nome=salvanome)
     pedidos = Pedido.objects.all()
     return render(request, "orders/all.html", {"pedidos": pedidos})
 
+@login_required
+def details(request, id):
+    pedido = Pedido.objects.get(id=id)
+    return render(request, "orders/detail.html", {"pedidos": pedido})
+
+def criando(request):
+    return render(request, "orders/create.html")
+
+def create(request):
+    salvanome = request.POST.get("nome")
+    Pedido.objects.create(nome=salvanome)
+    return redirect(orders)
+
 def editar(request, id):
     pedido = Pedido.objects.get(id=id)
-    return render(request, "update.html", {"pedido": pedido})
+    return render(request, "orders/edit.html", {"pedido": pedido})
 
 def update(request, id):
     salvanome = request.POST.get("nome")
     pedido = Pedido.objects.get(id=id)
     pedido.nome = salvanome
     pedido.save()
-    return redirect(details)
+    return redirect(orders)
 
 def remover(request, id):
     pedido = Pedido.objects.get(id=id)
     pedido.delete()
-    return redirect(index)
+    return redirect(orders)
 
