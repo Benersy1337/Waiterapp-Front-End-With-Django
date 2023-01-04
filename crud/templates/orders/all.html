@@ -12,13 +12,13 @@
         <br />
         <a name="orders"></a>
         <div class="row justify-content-center">
-            {% for pedido in pedidos %}
+           
             <div class="board-pedidos">
                 <div class="item-page">
                     <img class="img-pedido" src="../img/products/{{this.imagem}}" class="card-img-top" alt="..." />
                     <div class="card-body">
-                        <h5 class="card-title">Mesa {{pedido.id}}</h5>
-                        <p class="card-text">Pedido {{pedido.nome}}</p>
+                        <h5 class="card-title">Mesa {{pedido.numeroMesa}}</h5>
+                        <p class="card-text">Pedido {{pedido.numero}}</p>
                         <div class="actions">
                             <a href="/details/{{pedido.id}}" class="button-modal">Detalhes</a>
                             <a href="/editar/{{pedido.id}}" class="button-modal">Editar</a>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            {% endfor %}
+           
         </div>
     </div>
 </div>

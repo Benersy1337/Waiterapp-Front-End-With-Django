@@ -15,7 +15,10 @@ def orders(request):
 @login_required
 def details(request, id):
     pedido = Pedido.objects.get(id=id)
-    return render(request, "orders/detail.html", {"pedidos": pedido})
+    data = {}
+    data['pedido'] = pedido
+    return render(request, "orders/detail.html", data)
+    
 
 def criando(request):
     return render(request, "orders/create.html")
@@ -27,7 +30,9 @@ def create(request):
 
 def editar(request, id):
     pedido = Pedido.objects.get(id=id)
-    return render(request, "orders/edit.html", {"pedido": pedido})
+    data = {}
+    data['pedido'] = pedido
+    return render(request, "orders/edit.html", data)
 
 def update(request, id):
     salvanome = request.POST.get("nome")

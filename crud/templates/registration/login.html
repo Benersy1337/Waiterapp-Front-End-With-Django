@@ -2,25 +2,62 @@
 
 {% block content %}
 
-    {% block styles %}
-    {% load static %}
-        <link rel="stylesheet" href="{% static '/assets/css/login.css' %}" />
-    {% endblock %}
+{% block styles %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/assets/css/login.css' %}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock %}
 
 
-<h3>Autenticação</h3>
-
-    <form action="" method="POST">
-
-        {% csrf_token %}
-
-        Usuário<input type="text " name="username">
-
-        Senha<input type="password" name="password">
-
-        <button type="submit">Login</button>
 
 
-    </form>
+<!-- <form action="" method="POST">
+
+    {% csrf_token %}
+
+    Usuário<input type="text " name="username">
+
+    Senha<input type="password" name="password">
+
+    <button type="submit">Login</button>
+
+
+</form> -->
+
+
+
+    
+
+    <div class="login-box">
+        <h2>Login</h2>
+        <form action="" method="POST">
+
+            {% csrf_token %}
+
+
+          <div class="user-box">
+            <input type="text" name="username" required="">
+            <label>Username</label>
+          </div>
+          <div class="user-box">
+            <input type="password" name="password" required="">
+            <label>Password</label>
+          </div>
+          <a href="#">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <button type="submit">LOGIN</button>
+          </a>
+        </form>
+      </div>
+
+
+
+
+
 
 {% endblock %}
