@@ -4,13 +4,18 @@
     <a href="/all"><button class="button-cadastro"><strong>Voltar</strong></button></a>
 {% endblock %}
 
+{% load static %}
+{% static "" as baseUrl %}
+
 {% block content %}
 
-<div class="card-parciais item-page">
-    <img src="/img/products/{{pedido.imagem}}" class="img-detail">
+
+<div class="card-parciais item-page">   
+    <img src="{{ baseUrl }}/static/assets/img/{{pedido.imagem}}" class="card-img-top" alt="..." /> 
     <div class="card-body">
-        <h5 class="card-title">Mesa {{pedido.id}}</h5>
+        <p class="card-text">Descrição <Strong>{{pedido.descricao}}</Strong></p>
         <p class="card-text">Pedido {{pedido.numero}}</p>
+        <h5 class="card-title">Mesa {{pedido.numeroMesa}}</h5>
     </div>
 </div>
 

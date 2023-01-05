@@ -14,22 +14,26 @@
 
     <div class="card-parciais item-page">
 
-        <img src="/img/products/{{pedido.imagem}}" class="img-detail" alt="{{pedido.mesa}}" />
+        <img src="{{ baseUrl }}/static/assets/img/{{pedido.imagem}}" class="card-img-top" alt="..." /> 
 
         <div class="card-body">
 
+
             <div class="form-group">
-
-                <input type="hidden" name="id" value={{pedido.id}} />
-
-                <label for="mesa">Número da Mesa:</label>
-                <input type="number" name="mesa" placeholder="Digite o número da Mesa" value="{{pedido.numero}}" />
-
+                <label for="pedido">Descrição:</label>
+                <input type="text" name="descricao" placeholder="Digite a descrição do pedido" value="{{pedido.descricao}}" />
             </div>
 
+            
             <div class="form-group">
                 <label for="pedido">Pedido:</label>
-                <input type="number" name="pedido" placeholder="Digite o número do Pedido" value="{{pedido.pedido}}" />
+                <input type="number" name="numero" placeholder="Digite o número do Pedido" value="{{pedido.numero}}" />
+            </div>
+            
+            
+            <div class="form-group">
+                <label for="mesa">Número da Mesa:</label>
+                <input type="number" name="numeroMesa" placeholder="Digite o número da Mesa" value="{{pedido.numeroMesa}}" />
             </div>
 
 
@@ -40,10 +44,6 @@
 
             <div class="buttons-detail">
 
-                <form action="/remover/{{pedido.id}}" method="POST">
-                    <input type="submit" class="button btn btn-primary excluir" value="Excluir">
-                </form>
-
                 <input type="submit" class="btn btn-primary button" value="Salvar" />
 
             </div>
@@ -52,6 +52,17 @@
 
        
 </form>
+
+
+<form action="/remover/{{pedido.id}}" method="POST">
+
+    {% csrf_token %}
+    
+    <div class="buttons-detail">
+        <input type="submit" class="button btn btn-primary excluir" value="Excluir">
+    </div>
+</form>
+
 
 
 

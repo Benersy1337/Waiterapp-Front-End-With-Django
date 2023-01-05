@@ -4,11 +4,13 @@ from django.db import models
 
 class Pedido(models.Model):
 
-    nome = models.CharField(max_length=30)
+    descricao = models.CharField(max_length=30, null=True)
 
-    numero = models.IntegerField(default=None)
+    numero = models.IntegerField(null=True, default=None)
 
-    numeroMesa = models.IntegerField(default=None)
+    numeroMesa = models.IntegerField(null=True, default=None)
+
+    imagem = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, default=None)
 
     def __str__(self):
-        return self.nome
+        return self.descricao

@@ -5,7 +5,9 @@ from .models import Pedido
 
 @login_required
 def index(request):
-    return render(request, "index.html")
+    pedidos = Pedido.objects.all()
+    CountPedidos = len(pedidos)
+    return render(request, "index.html", {"pedidos": pedidos, "CountPedidos": CountPedidos})
 
 @login_required
 def orders(request):
@@ -24,8 +26,11 @@ def criando(request):
     return render(request, "orders/create.html")
 
 def create(request):
-    salvanome = request.POST.get("nome")
-    Pedido.objects.create(nome=salvanome)
+    salvadescricao = request.POST.get("descricao")
+    salvanumero = request.POST.get("numero")
+    salvanumeroMesa = request.POST.get("numeroMesa")
+    salvaImagem = request.POST.get("imagem")
+    Pedido.objects.create(descricao=salvadescricao, numero=salvanumero, numeroMesa=salvanumeroMesa,imagem=salvaImagem)
     return redirect(orders)
 
 def editar(request, id):
@@ -35,9 +40,15 @@ def editar(request, id):
     return render(request, "orders/edit.html", data)
 
 def update(request, id):
-    salvanome = request.POST.get("nome")
+    salvadescricao = request.POST.get("descricao")
+    salvanumero = request.POST.get("numero")
+    salvanumeroMesa = request.POST.get("numeroMesa")
+    salvaImagem = request.POST.get("imagem")
     pedido = Pedido.objects.get(id=id)
-    pedido.nome = salvanome
+    pedido.descricao = salvadescricao
+    pedido.numero = salvanumero
+    pedido.numeroMesa = salvanumeroMesa
+    pedido.imagem = salvaImagem
     pedido.save()
     return redirect(orders)
 

@@ -4,6 +4,9 @@
     <a href="/"><button class="button-cadastro"><strong>Voltar</strong></button></a>
 {% endblock %}
 
+{% load static %}
+{% static "" as baseUrl %}
+
 {% block content %}
 
 <div class="container-cadastro">
@@ -12,21 +15,20 @@
         <br />
         <a name="orders"></a>
         <div class="row justify-content-center">
-           
-            <div class="board-pedidos">
-                <div class="item-page">
-                    <img class="img-pedido" src="../img/products/{{this.imagem}}" class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <h5 class="card-title">Mesa {{pedido.numeroMesa}}</h5>
-                        <p class="card-text">Pedido {{pedido.numero}}</p>
-                        <div class="actions">
-                            <a href="/details/{{pedido.id}}" class="button-modal">Detalhes</a>
-                            <a href="/editar/{{pedido.id}}" class="button-modal">Editar</a>
+            {% for pedido in pedidos %}
+                    <div class="card-parciais item-page">
+                        <img src="{{ baseUrl }}/static/assets/img/{{pedido.imagem}}" class="card-img-top" alt="..." /> 
+                        <div class="card-body">
+                            <p class="card-text">Descrição <Strong>{{pedido.descricao}}</Strong></p>
+                            <p class="card-text">Pedido {{pedido.numero}}</p>
+                            <h5 class="card-title">Mesa {{pedido.numeroMesa}}</h5>
+                            <div class="actions">
+                                <a href="/details/{{pedido.id}}" class="button-modal">Detalhes</a>
+                                <a href="/editar/{{pedido.id}}" class="button-modal">Editar</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-           
+            {% endfor %}
         </div>
     </div>
 </div>

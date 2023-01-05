@@ -1,7 +1,7 @@
 {% extends 'home/home.html' %}
 
 {% block button-header %}
-    <a href="/all"><button class="button-cadastro"><strong>Editar Pedidos</strong></button></a>
+<a href="/all"><button class="button-cadastro"><strong>Editar Pedidos</strong></button></a>
 {% endblock %}
 
 {% block content %}
@@ -11,20 +11,18 @@
     <div class="board">
         <header class="header-board">⏰</header>
         <strong>Aguardando</strong>
-        <span>(3)</span>
-        <span>{{CountPedidos}}</span>
+        <span>({{CountPedidos}})</span>
         <br>
         <a name="orders"></a>
         <div class="row  justify-content-center" id="pedidos">
             {% for pedido in pedidos %}
             <div class="board-pedidos">
-                <div class="card">
-                    <img class="img-pedido" src="../img/products/{{this.imagem}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Mesa {{pedido.id}}</h5>
-                        <p class="card-text">Pedido {{pedido.name}}</p>
-                        <button class="button-enviar"><strong>Enviar para Produção</strong></button>
-                    </div>
+                <img src="{{ baseUrl }}/static/assets/img/{{pedido.imagem}}" class="card-img-top" alt="..." />
+                <div class="card-body">
+                    <p class="card-text">Descrição <Strong>{{pedido.descricao}}</Strong></p>
+                    <p class="card-text">Pedido {{pedido.numero}}</p>
+                    <h5 class="card-title">Mesa {{pedido.numeroMesa}}</h5>
+                    <button class="button-enviar"><strong>Enviar para Produção</strong></button>
                 </div>
             </div>
             {% endfor %}
