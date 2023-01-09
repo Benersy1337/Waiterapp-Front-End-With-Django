@@ -6,8 +6,19 @@ from .models import Pedido
 @login_required
 def index(request):
     pedidos = Pedido.objects.all()
+    countProducao = 0
+    countConcluido = 0
+
     CountPedidos = len(pedidos)
-    return render(request, "index.html", {"pedidos": pedidos, "CountPedidos": CountPedidos})
+    for i in range (CountPedidos):
+        if pedidos[i].status == "PRODUCAO":
+            countProducao+=1
+            CountPedidos-=1
+        elif pedidos[i].status == "CONCLUIDO":
+            countConcluido+=1
+            CountPedidos-=1
+
+    return render(request, "index.html", {"pedidos": pedidos, "CountPedidos": CountPedidos, "CountProducao": countProducao, "CountConcluido": countConcluido } )
 
 @login_required
 def orders(request):
@@ -55,5 +66,24 @@ def update(request, id):
 def remover(request, id):
     pedido = Pedido.objects.get(id=id)
     pedido.delete()
+
+    if pedido.status == "CONCLUIDO":
+        return redirect(index)
+
     return redirect(orders)
+
+def status(request, id):
+   pedido = Pedido.objects.get(id=id)
+
+   if pedido.status == "AGUARDANDO":
+    pedido.status = "PRODUCAO"
+    pedido.save()
+
+   else:
+    pedido.status = "CONCLUIDO"
+    pedido.save()
+    
+   
+   return redirect(index)
+
 

@@ -16,29 +16,88 @@
         <a name="orders"></a>
         <div class="row  justify-content-center" id="pedidos">
             {% for pedido in pedidos %}
+            {% if pedido.status == "AGUARDANDO" %}
             <div class="board-pedidos">
                 <img src="{{ baseUrl }}/static/assets/img/{{pedido.imagem}}" class="card-img-top" alt="..." />
                 <div class="card-body">
                     <p class="card-text">Descrição <Strong>{{pedido.descricao}}</Strong></p>
                     <p class="card-text">Pedido {{pedido.numero}}</p>
                     <h5 class="card-title">Mesa {{pedido.numeroMesa}}</h5>
-                    <button class="button-enviar"><strong>Enviar para Produção</strong></button>
+                    <form action="{% url 'status' pedido.id %}" method="POST">
+
+                        {% csrf_token %}
+                        
+                        <div>
+                            <input type="submit" class="button-enviar" value="Enviar para Produção">
+                        </div>
+                    </form>
                 </div>
             </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="board">
+        <header class="header-board">👨🏻‍🍳</header>
+        <strong>Em Produção</strong>
+        <span>({{CountProducao}})</span>
+        <br>
+        <a name="orders"></a>
+        <div class="row  justify-content-center" id="pedidos">
+            {% for pedido in pedidos %}
+            {% if pedido.status == "PRODUCAO" %}
+            <div class="board-pedidos">
+                <img src="{{ baseUrl }}/static/assets/img/{{pedido.imagem}}" class="card-img-top" alt="..." />
+                <div class="card-body">
+                    <p class="card-text">Descrição <Strong>{{pedido.descricao}}</Strong></p>
+                    <p class="card-text">Pedido {{pedido.numero}}</p>
+                    <h5 class="card-title">Mesa {{pedido.numeroMesa}}</h5>
+                    <form action="{% url 'status' pedido.id %}" method="POST">
+
+                        {% csrf_token %}
+                        
+                        <div>
+                            <input type="submit" class="button-enviar" value="Concluir">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
             {% endfor %}
         </div>
     </div>
 
     <div class="board">
-        <header class="header-board">👨🏻‍🍳</header>
-        <strong>Em Produção</strong>
-        <span>(2)</span>
-    </div>
-
-    <div class="board">
         <header class="header-board">✅</header>
         <strong>Concluído</strong>
-        <span>(3)</span>
+        <span>({{CountConcluido}})</span>
+        <br>
+        <a name="orders"></a>
+        <div class="row  justify-content-center" id="pedidos">
+            {% for pedido in pedidos %}
+            {% if pedido.status == "CONCLUIDO" %}
+            <div class="board-pedidos">
+                <img src="{{ baseUrl }}/static/assets/img/{{pedido.imagem}}" class="card-img-top" alt="..." />
+                <div class="card-body">
+                    <p class="card-text">Descrição <Strong>{{pedido.descricao}}</Strong></p>
+                    <p class="card-text">Pedido {{pedido.numero}}</p>
+                    <h5 class="card-title">Mesa {{pedido.numeroMesa}}</h5>
+                    <form action="/remover/{{pedido.id}}" method="POST">
+
+
+                        {% csrf_token %}
+                        
+                        <div>
+                            <input type="submit" class="button-enviar" value="Finalizar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
     </div>
 
 </div>
