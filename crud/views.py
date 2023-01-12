@@ -32,7 +32,7 @@ def details(request, id):
     data['pedido'] = pedido
     return render(request, "orders/detail.html", data)
     
-
+# Renderiza a rota para criar um pedido
 def criando(request):
     return render(request, "orders/create.html")
 
@@ -44,6 +44,7 @@ def create(request):
     Pedido.objects.create(descricao=salvadescricao, numero=salvanumero, numeroMesa=salvanumeroMesa,imagem=salvaImagem)
     return redirect(orders)
 
+# Renderiza a rota para editar o pedido específico
 def editar(request, id):
     pedido = Pedido.objects.get(id=id)
     data = {}
@@ -59,7 +60,10 @@ def update(request, id):
     pedido.descricao = salvadescricao
     pedido.numero = salvanumero
     pedido.numeroMesa = salvanumeroMesa
-    pedido.imagem = salvaImagem
+
+    if salvaImagem != "":
+        pedido.imagem = salvaImagem
+        
     pedido.save()
     return redirect(orders)
 

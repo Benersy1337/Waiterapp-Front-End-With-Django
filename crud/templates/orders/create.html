@@ -56,7 +56,7 @@
 
             <div class="form-group">
                 <label for="imagem">Imagem:</label>
-                <input type="file" name="imagem"/>
+                <input type="file" name="imagem" required/>
             </div> 
 
                 
@@ -74,21 +74,3 @@
 
 {% endblock %}
 
-<!-- <ul>
-    {% for pessoa in pessoas %}
-    <li>
-        {{ pessoa.id }} - {{pessoa.nome}} 
-        <a href="{% url 'editar' pessoa.id %}">Editar</a>
-        <a href="{% url 'remover' pessoa.id %}">Remover</a>
-        {% if request.user.is.authenticated %}
-            <a href="{% url 'logout' %}">Sair</a>
-        {% endif %}
-    </li>
-    {% endfor %}
-</ul> -->
-
-<!-- <form action="{% url 'create' %}" method="POST">
-    {% csrf_token %}
-    <input type="text" name="nome" required>
-    <button type="submit">Criar</button>
-</form>  -->

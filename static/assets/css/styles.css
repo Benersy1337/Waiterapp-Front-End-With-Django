@@ -103,6 +103,7 @@ h2 {
   line-height: 2rem;
   margin-bottom: 1rem;
   justify-content: center;
+  box-shadow: 10px 5px 5px black;
 }
 
 .header-board {
@@ -155,12 +156,14 @@ h2 {
 }
 
 .card-parciais {
+  margin: 0 auto;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, .125);
   border-radius: 1rem;
   width: 24.6rem;
+  box-shadow: 10px 5px 5px black;
 }
 
 .board-orders {
@@ -195,3 +198,18 @@ h2 {
   text-decoration: dashed;
 }
 
+
+
+.buttons-detail .excluir{
+  position: relative;
+  right: 5rem;
+  bottom: 3rem;
+  margin-top: 1rem;
+}
+
+.buttons-detail .salvar{
+  position: relative;
+  top: 1.5rem;
+  margin-left: 6rem;
+  margin-top: 1rem;
+}
